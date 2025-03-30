@@ -1,10 +1,54 @@
 #include "board.h";
+#include "square.h";
 #include <iostream>;
 #include <string>;
 
 using namespace std;
 
 Board::Board() {}
+
+Square s[40] = { // if you're checking for square name, note that the name is allcaps no spaces. 
+    Square("AL", false), 
+    Square("SLC", false), 
+    Square("ML", false), 
+    Square("TUITION", false), 
+    Square("MKV", false), 
+    Square("ECH", false), 
+    Square("NEEDLESHALL", false), 
+    Square("PAS", false), 
+    Square("HH", false), 
+    Square("DCTIMSLINE", false), 
+    Square("RCH", false), 
+    Square("PAC", false), 
+    Square("DWE", false), 
+    Square("CPH", false), 
+    Square("UWP", false), 
+    Square("LHI", false), 
+    Square("SLC", false), 
+    Square("BMH", false), 
+    Square("OPT", false), 
+    Square("GOOSENESTING", false), 
+    Square("EV1", false), 
+    Square("NEEDLESHALL", false), 
+    Square("EV2", false), 
+    Square("EV3", false), 
+    Square("V1", false), 
+    Square("PHYS", false), 
+    Square("B1", false), 
+    Square("CIF", false), 
+    Square("B2", false), 
+    Square("GOTOTIMS", false), 
+    Square("EIT", false), 
+    Square("ESC", false), 
+    Square("SLC", false), 
+    Square("C2", false), 
+    Square("REV", false), 
+    Square("NEEDLESHALL", false), 
+    Square("MC", false), 
+    Square("COOPFEE", false), 
+    Square("DC", false)    
+};
+
 
 // starting from go (collect OSAP), goes clockwise, ignoring non-property spaces
 // up to five I's in a row
@@ -37,14 +81,14 @@ string players[40] = {
 // improvements and owners array values will be replaced with corresponding square class values once implemented
 void Board::updateBoard() {
     board = "_________________________________________________________________________________________\n"
-    "|Goose  |" + owner[11] + " " + improvements[11] + 
+    "|GOOSE  |" + owner[11] + " " + improvements[11] + 
     "|NEEDLES|" + owner[12] + " " + improvements[12] + 
     "|" + owner[13] + " " + improvements[13] + 
     "|V1     |" + owner[14] + " " + improvements[14] + 
     "|" + owner[15] + " " + improvements[15] + 
     "|CIF    |" + owner[16] + " " + improvements[16] + 
     "|GOTO   |\n"
-    "|Nesting|-------|HALL   |-------|-------|       |-------|-------|       |-------|TIMS   |\n"
+    "|NESTING|-------|HALL   |-------|-------|       |-------|-------|       |-------|TIMS   |\n"
     "|       |EV1    |       |EV2    |EV3    |       |PHYS   |B1     |       |B2     |       |\n"
     "|       |       |       |       |       |       |       |       |       |       |       |\n"
     "|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|\n"
@@ -99,12 +143,12 @@ void Board::updateBoard() {
     "|RCH    |                                                                       |DC     |\n"
     "|       |                                                                       |       |\n"
     "|_______|_______________________________________________________________________|_______|\n"
-    "|DCTims |" + owner[4] + " " + improvements[4] + 
+    "|DCTIMS |" + owner[4] + " " + improvements[4] + 
     "|" + owner[3] + " " + improvements[3] + 
     "|NEEDLES|" + owner[2] + " " + improvements[2] + 
     "|MKV    |TUITION|" + owner[1] + " " + improvements[1] + 
     "|SLC    |" + owner[0] + " " + improvements[0] + "|COLLECT|\n"
-    "|Line   |-------|-------|HALL   |-------|       |       |-------|       |-------|OSAP   |\n"
+    "|LINE   |-------|-------|HALL   |-------|       |       |-------|       |-------|OSAP   |\n"
     "|       |HH     |PAS    |       |ECH    |       |       |ML     |       |AL     |       |\n"
     "|       |       |       |       |       |       |       |       |       |       |       |\n"
     "|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|";

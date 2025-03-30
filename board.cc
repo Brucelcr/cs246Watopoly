@@ -1,7 +1,10 @@
-import <iostream>;
-import <string>;
+#include "board.h";
+#include <iostream>;
+#include <string>;
 
 using namespace std;
+
+Board::Board() {}
 
 // starting from go (collect OSAP), goes clockwise, ignoring non-property spaces
 // up to five I's in a row
@@ -20,9 +23,20 @@ string owner[22] = {
     " ", " ", " ", " ", " ", " ", " "
 };
 
+// player one takes index 0, player two takes index 1, etc, etc...
+// thus, the first index is only ever filled in once at a time.
+// current player cap is 6, we can increase to 7, and 8 if we change the board.
+// probably  would be easier to just list the players on square, but we'll see what happens.
+string players[40] = {
+    "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ",
+    "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ",
+    "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ",
+    "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      "
+};
+
 // improvements and owners array values will be replaced with corresponding square class values once implemented
-string updateBoard() {
-    return "_________________________________________________________________________________________\n"
+void Board::updateBoard() {
+    board = "_________________________________________________________________________________________\n"
     "|Goose  |" + owner[11] + " " + improvements[11] + 
     "|NEEDLES|" + owner[12] + " " + improvements[12] + 
     "|" + owner[13] + " " + improvements[13] + 
@@ -96,12 +110,13 @@ string updateBoard() {
     "|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|";
 }
 
-void drawboard() {
-    string board = updateBoard();   
+void Board::drawBoard() {
+    updateBoard();   
     cout << board << endl;
 }
 
 // for testing
 int main() {
-    drawboard();
+    Board plank;
+    plank.drawBoard();
 }

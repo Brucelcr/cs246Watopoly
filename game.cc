@@ -40,8 +40,39 @@ void Game::playTurn(){
         return;
     }
     cout << "It's " << players[currentPlayerIndex]->getName() << "'s turn." << endl;
+    cout << "Enter Command (roll/trade Name give recieve/quit): " << endl;
+    string command;
+    cin >> command;
 
-    // add input
+    if(command == "roll"){
+        cout << players[currentPlayerIndex]->getName() << "rolled the dice" << endl;
+    }else if (command == "trade"){
+        string targetName, give, recieve;
+        cin >> targetName >> give >> recieve;
+        Player* target = nullptr;
+        for(auto &p : players){
+            if(p->getName() == targetNmae && p.get != players[currentPlayerIndex].get()){
+                target = p.get();
+                break;
+            } 
+            
+        }
+        if (!target) {
+            cout << "Trade failed: Target player " << targetName << " not found." << endl;
+        }
+        else {
+            players[currentPlayerIndex]->trade(target, give, recieve);
+        }
+
+    }
+    else if (command == "quit") {
+        gameOver = true;
+        cout << "Quitting game..." << endl;
+        return;
+    }
+    else {
+        cout << "Unknown command." << endl;
+    }
 
     nextPlayer();
 

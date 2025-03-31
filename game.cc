@@ -51,7 +51,7 @@ void Game::playTurn(){
         cin >> targetName >> give >> recieve;
         Player* target = nullptr;
         for(auto &p : players){
-            if(p->getName() == targetNmae && p.get != players[currentPlayerIndex].get()){
+            if(p->getName() == targetName && p.get() != players[currentPlayerIndex].get()){
                 target = p.get();
                 break;
             } 
@@ -61,7 +61,11 @@ void Game::playTurn(){
             cout << "Trade failed: Target player " << targetName << " not found." << endl;
         }
         else {
-            players[currentPlayerIndex]->trade(target, give, recieve);
+            players[currentPlayerIndex]->trade(
+                *target, 
+                players[currentPlayerIndex]->stringToProperty(give), 
+                players[currentPlayerIndex]->stringToProperty(recieve)
+            );
         }
 
     }

@@ -96,6 +96,16 @@ void Player::removeProperty(std::shared_ptr<Property> property) {
     property->setOwner(" ");
 }
 
+std::shared_ptr<Property> Player::stringToProperty(std::string property) {
+    for(const std::shared_ptr<Property>& p : properties) {
+        if (p->getName() ==  property) {
+            return p;
+        }
+    }
+    cout << "You don't own this building!" << endl;
+    return nullptr;
+}
+
 void Player::declareBankruptcy() {
     properties.clear();
     balance = 0;
@@ -118,7 +128,7 @@ void Player::trade(Player& other, std::shared_ptr<Property> give, std::shared_pt
 
 void Player::buyImprovement(const std::shared_ptr<Property>& property) {
     if (property->getOwner() != name) {
-        std::cout << "Buy Improment fail: You don't own this property" << std::endl;
+        std::cout << "Buy Improvement fail: You don't own this property" << std::endl;
         return;
     }
 
@@ -188,7 +198,7 @@ void Player::sendToTims() {
 }
 
 bool Player::hasMonopoly() const {
- // 
+    return false;
 }
 
 Player::Player(std::string name)

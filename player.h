@@ -20,9 +20,6 @@ private:
     std::vector<std::shared_ptr<Property>> properties;
     Board* gameboard;
 
-    void removeProperty(Property* prop);
-    void clearProperty(Property* prop);
-
 public:
     Player(std::string name, int startBalance, char piece, Board* gameboard);
     Player(std::string name); // to pass in into game.cc
@@ -46,6 +43,7 @@ public:
 
     void addProperty(std::shared_ptr<Property> property); // add to vector and update owner
     void removeProperty(std::shared_ptr<Property> property);
+    std::shared_ptr<Property> stringToProperty(std::string property);
     void declareBankruptcy();
     void trade(Player& other, std::shared_ptr<Property> give, std::shared_ptr<Property> receive);
 

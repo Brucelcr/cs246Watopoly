@@ -59,14 +59,14 @@ void Player::move(int steps) {
 
 }
 
-void Player::pay(Player payee, int amount) {
+void Player::pay(Player* payee, int amount) {
     if (balance < amount) {
         std::cout << "No enough money to pay" << std::endl;
         return;
     }
 
     balance -= amount;
-    payee.receiveMoney(amount);
+    payee->receiveMoney(amount);
 }
 
 void Player::paySchool(int amount) {
@@ -138,12 +138,12 @@ void Player::trade(Player& other, std::shared_ptr<Property> give, std::shared_pt
 
     if (giveMoney) {
         balance -= giveMoney;
-        pay(other, giveMoney);
+        pay(&other, giveMoney);
     }
 
     if (receiveMoney) {
         balance -= giveMoney;
-        pay(other, giveMoney);
+        pay(&other, giveMoney);
     }
 
     std::cout << name << " traded with " << other.getName() << std::endl;

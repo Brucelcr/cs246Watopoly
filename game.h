@@ -25,10 +25,11 @@ public:
     bool saveGame(const std::string &filename);
 
     bool isGameOver() const;
+    
+    std::vector<std::unique_ptr<Player>> players;
 
 private:
     void nextPlayer();
-    std::vector<std::unique_ptr<Player>> players;
 
     int currentPlayerIndex;
     bool gameOver;

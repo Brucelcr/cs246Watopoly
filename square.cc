@@ -35,12 +35,16 @@ string Square::getName() {
 
 string Square::getPlayers() {
     string out = "";
-    int size = sizeof(players) / sizeof(players[0]);
+    int size = players.size();
     string white((7-size), ' ');
     for (string player : players) { // Note: I intend for nonactive players to be indicated by a space (" ")
         out = out + player;
     }
     return out + white;
+}
+
+void Square::setPlayers(string counter) {
+    players.push_back(counter);
 }
 
 Property Square::getProperty() {

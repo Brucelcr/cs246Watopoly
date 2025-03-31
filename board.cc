@@ -99,8 +99,8 @@ Square s[40] = {
 
 
 // improvements and owners array values will be replaced with corresponding square class values once implemented
-void Board::updateBoard() {
-    board = "_________________________________________________________________________________________\n"
+string Board::updateBoard() {
+    return "_________________________________________________________________________________________\n"
     "|GOOSE  |" + s[11].getProperty().getOwner() + " " + viewImprovements(11) + 
     "|NEEDLES|" + s[12].getProperty().getOwner() + " " + viewImprovements(12) + 
     "|" + s[13].getProperty().getOwner() + " " + viewImprovements(13) + 
@@ -193,37 +193,7 @@ void Board::updateBoard() {
 }
 
 void Board::drawBoard() {
-    updateBoard();   
-    cout << board << endl;
-}
-
-void auction(vector<Player> players) {
-    int value = 0;
-    int round = 0;
-    int lastbid = 0;
-    bool isPurchased = false;
-
-    while (!isPurchased) {
-        if (round == (int) players.size()) {
-            players[lastbid].paySchool(value);
-        }
-        cout << "Bid" + to_string(value + 10) + "? (Y/N)" << endl;
-        string choice;
-        while (true) {
-            std::cin >> choice;
-            if (choice == "Y") {
-                round = 0;
-                value += 10;
-                break;
-            }
-            else if (choice == "N") {
-                round++;
-                // pass to next player
-                break;
-            }
-            std::cout << "Invalid choice. Enter Y or N: ";
-        }
-    }
+    cout << updateBoard() << endl;
 }
 
 string Board::viewImprovements(int index) {
@@ -233,9 +203,3 @@ string Board::viewImprovements(int index) {
     
     return out + outToo;
 }
-
-// for testing
-// int main() {
-//     Board plank;
-//     plank.drawBoard();
-// }

@@ -30,7 +30,10 @@ void Game::initGame() {
     cout << "Enter number of players (2-6): ";
     cin >> numPlayers;
     while (numPlayers < 2 || numPlayers > 6) {
-        cout << "Invalid number. Please enter a number between 2 and 6: ";
+        numPlayers = 0;
+        cout << "Invalid number. Please enter a number between 2 and 6: " << endl;
+        cin.clear();
+        cin.ignore();
         cin >> numPlayers;
     }
     
@@ -60,7 +63,8 @@ void Game::playTurn() {
 
     Player* current = players[currentPlayerIndex].get();
     cout << "It's " << current->getName() << "'s turn." << endl;
-
+    gameboard->drawBoard();
+    
     string command;
     while (true) {
         cout << "Enter command (roll / trade / quit): ";
@@ -128,7 +132,7 @@ void Game::playTurn() {
                 if (!giveProp || !receiveProp) continue;
             }
 
-            current->trade(*target, giveProp, receiveProp);  
+            current->trade(*target, giveProp, receiveProp, 0, 0);  
         }
 
         else if (command == "quit") {
@@ -139,7 +143,6 @@ void Game::playTurn() {
         else {
             cout << "Unknown command." << endl;
         }
-        gameboard->drawBoard();
 
     }
 

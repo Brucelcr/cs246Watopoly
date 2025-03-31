@@ -2,6 +2,7 @@
 #define Square_H
 #include "player.h"
 #include "property.h"
+#include <vector>
 #include <string>
 
 using namespace std;
@@ -13,10 +14,11 @@ class Square {
         int calculateRent(vector<Player> players);
         string getName();
         string getPlayers();
+        void setPlayers(string counter);
         Property getProperty();
-        string landOn(); // Guys, what does this function do, I don't remember???
+        string landOn();
     private:
-        string players[6];
+        vector <string> players;
         bool isProperty;
         Property building;
 };

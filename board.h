@@ -9,10 +9,8 @@ class Board {
     public:
         Board();
         void drawBoard();
-        void auction();
     private: 
-        string board;
-        void updateBoard();
+        string updateBoard();
         string viewImprovements(int index);
 };
 

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-Square::Square(string name, bool isProperty) {};
+Square::Square(string name, bool isProperty, Property building) : name(name), isProperty(isProperty), building(building) {};
 
 string Square::getName() {
     return name;
@@ -11,15 +11,15 @@ string Square::getName() {
 
 string Square::getPlayers() {
     string out = "";
+    int size = sizeof(players) / sizeof(players[0]);
+    string white((7-size), ' ');
     for (string player : players) { // Note: I intend for nonactive players to be indicated by a space (" ")
         out = out + player;
     }
-    return out;
+    return out + white;
 }
 
 Property Square::getProperty() {
-    Property building;
-    // I dunno
     return building;
 }
 

@@ -4,10 +4,13 @@
 
 using namespace std;
 
-Property::Property() : mortgaged(false), owner(" "), improvements(0) {};
+Property::Property(int cost, int tuition[6], string block) : cost(cost), tuition(tuition), 
+block(block), mortgaged(false), owner(" "), improvements(0) {};
 
 int Property::calculateRent() {
-    // uhh do value calcs, I'll set up values in a sec.
+    if (block != "None", "Residences", "Gym") {
+        return tuition[improvements];
+    }
     return 0;
 }
 
@@ -39,5 +42,7 @@ void Property::unmortgage() {
     mortgaged = false;
 }
 
-
+int Property::getImprovements() {
+    return improvements;
+}
 

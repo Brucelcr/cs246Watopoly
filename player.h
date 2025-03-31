@@ -28,7 +28,8 @@ public:
     int getPosition() const;
     std::string getName()const;
     int getBalance() const;
-    // void showAssets(); // do we really need this?
+    // void showAssets(); // do we really need this? 
+    // Yes, explicitly said in project outline.
     bool isinTimsLine()const;
     int getTurnsInTims()const;
     int getTotalWorth() const; // return total worth (including your savings, printed prices of all buildings you own, and costs of each improvement)

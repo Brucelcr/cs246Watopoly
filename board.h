@@ -9,7 +9,6 @@ class Board {
     public:
         Board();
         void drawBoard();
-        Property getProperty(); 
         void auction();
     private: 
         string board;

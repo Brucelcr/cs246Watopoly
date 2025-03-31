@@ -1,6 +1,8 @@
 #include "property.h"
 #include "board.h"
 #include "square.h"
+#include "player.h"
+#include "game.h"
 #include <iostream>
 #include <string>
 
@@ -180,6 +182,35 @@ void Board::updateBoard() {
 void Board::drawBoard() {
     updateBoard();   
     cout << board << endl;
+}
+
+void auction() {
+    int value = 0;
+    int round = 0;
+    int lastbid = 0;
+    bool isPurchased = false;
+
+    while (!isPurchased) {
+        if (round == numPlayers) {
+            players[lastbid].paySchool(value);
+        }
+        cout << "Bid" + to_string(value + 10) + "? (Y/N)" << endl;
+        string choice;
+        while (true) {
+            std::cin >> choice;
+            if (choice == "Y") {
+                round = 0;
+                value += 10;
+                break;
+            }
+            else if (choice == "N") {
+                round++;
+                // pass to next player
+                break;
+            }
+            std::cout << "Invalid choice. Enter Y or N: ";
+        }
+    }
 }
 
 string Board::viewImprovements(int index) {

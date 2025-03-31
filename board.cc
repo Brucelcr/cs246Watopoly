@@ -110,63 +110,74 @@ void Board::updateBoard() {
     "|GOTO   |\n"
     "|NESTING|-------|HALL   |-------|-------|       |-------|-------|       |-------|TIMS   |\n"
     "|       |EV1    |       |EV2    |EV3    |       |PHYS   |B1     |       |B2     |       |\n"
-    "|       |       |       |       |       |       |       |       |       |       |       |\n"
+    "|" + s[20].getPlayers() + "|" + s[21].getPlayers() + "|" + s[22].getPlayers() + "|" + s[23].getPlayers() + 
+    "|" + s[24].getPlayers() + "|" + s[25].getPlayers() + "|" + s[26].getPlayers() + "|" + s[27].getPlayers() + 
+    "|" + s[28].getPlayers() + "|" + s[29].getPlayers() + "|" + s[30].getPlayers() + "|\n"
     "|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|\n"
     "|" + s[10].getProperty().getOwner() + " " + viewImprovements(10) + 
     "|                                                                       |" + 
     s[17].getProperty().getOwner() + " " + viewImprovements(17) + "|\n"
     "|-------|                                                                       |-------|\n"
     "|OPT    |                                                                       |EIT    |\n"
-    "|       |                                                                       |       |\n"
+    "|" + s[19].getPlayers() + "|                                                                       |" + 
+    s[31].getPlayers() + "|\n"
     "|_______|                                                                       |_______|\n"
     "|" + s[9].getProperty().getOwner() + " " + viewImprovements(9) + 
     "|                                                                       |"  + 
     s[18].getProperty().getOwner() + " "+ viewImprovements(18) + "|\n"
     "|-------|                                                                       |-------|\n"
     "|BMH    |                                                                       |ESC    |\n"
-    "|       |                                                                       |       |\n"
+    "|" + s[18].getPlayers() + "|                                                                       |" + 
+    s[32].getPlayers() + "|\n"
     "|_______|                                                                       |_______|\n"
     "|SLC    |                                                                       |SLC    |\n"
     "|       |                                                                       |       |\n"
     "|       |                                                                       |       |\n"
-    "|       |                                                                       |       |\n"
+    "|" + s[17].getPlayers() + "|                                                                       |" + 
+    s[33].getPlayers() + "|\n"
     "|_______|                                                                       |_______|\n"
     "|" + s[8].getProperty().getOwner() + " " + viewImprovements(8) + 
     "|                                                                       |" + 
     s[19].getProperty().getOwner() + " " + viewImprovements(19) + "|\n"
     "|-------|                                                                       |-------|\n"
     "|LHI    |                                                                       |C2     |\n"
-    "|       |           _________________________________________________           |       |\n"
+    "|" + s[16].getPlayers() + "|           _________________________________________________           |" + 
+    s[34].getPlayers() + "|\n"
     "|_______|          |                                                 |          |_______|\n"
     "|UWP    |          | #   #  ###  #####  ###  ####   ###  #     #   # |          |REV    |\n"
     "|       |          | #   # #   #   #   #   # #   # #   # #     #   # |          |       |\n"
     "|       |          | # # # #####   #   #   # ####  #   # #      # #  |          |       |\n"
-    "|       |          | # # # #   #   #   #   # #     #   # #       #   |          |       |\n"
+    "|" + s[15].getPlayers() + "|          | # # # #   #   #   #   # #     #   # #       #   |          |" + 
+    s[35].getPlayers() + "|\n"
     "|_______|          | ##### #   #   #    ###  #      ###  #####   #   |          |_______|\n"
     "|" + s[7].getProperty().getOwner() + " " + viewImprovements(7) + 
     "|          |_________________________________________________|          |NEEDLES|\n"
     "|-------|                                                                       |HALL   |\n"
     "|CPH    |                                                                       |       |\n"
-    "|       |                                                                       |       |\n"
+    "|" + s[14].getPlayers() + "|                                                                       |" + 
+    s[36].getPlayers() + "|\n"
     "|_______|                                                                       |_______|\n"
     "|" + s[6].getProperty().getOwner() + " " + viewImprovements(6) + 
     "|                                                                       |" + 
     s[20].getProperty().getOwner() + " " + viewImprovements(20) + "|\n"
     "|-------|                                                                       |-------|\n"
     "|DWE    |                                                                       |MC     |\n"
-    "|       |                                                                       |       |\n"
+    "|" + s[13].getPlayers() + "|                                                                       |" + 
+    s[37].getPlayers() + "|\n"
     "|_______|                                                                       |_______|\n"
     "|PAC    |                                                                       |COOP   |\n"
     "|       |                                                                       |FEE    |\n"
     "|       |                                                                       |       |\n"
-    "|       |                                                                       |       |\n"
+    "|" + s[12].getPlayers() + "|                                                                       |" + 
+    s[38].getPlayers() + "|\n"
     "|_______|                                                                       |_______|\n"
     "|" + s[5].getProperty().getOwner() + " " + viewImprovements(5) + 
     "|                                                                       |" + 
     s[21].getProperty().getOwner() + " " + viewImprovements(21) + "|\n"
     "|-------|                                                                       |-------|\n"
     "|RCH    |                                                                       |DC     |\n"
-    "|       |                                                                       |       |\n"
+    "|" + s[11].getPlayers() + "|                                                                       |" + 
+    s[39].getPlayers() + "|\n"
     "|_______|_______________________________________________________________________|_______|\n"
     "|DCTIMS |" + s[4].getProperty().getOwner() + " " + viewImprovements(4) + 
     "|" + s[3].getProperty().getOwner() + " " + viewImprovements(3) + 
@@ -175,7 +186,9 @@ void Board::updateBoard() {
     "|SLC    |" + s[0].getProperty().getOwner() + " " + viewImprovements(0) + "|COLLECT|\n"
     "|LINE   |-------|-------|HALL   |-------|       |       |-------|       |-------|OSAP   |\n"
     "|       |HH     |PAS    |       |ECH    |       |       |ML     |       |AL     |       |\n"
-    "|       |       |       |       |       |       |       |       |       |       |       |\n"
+    "|" + s[10].getPlayers() + "|" + s[9].getPlayers() + "|" + s[8].getPlayers() + "|" + s[7].getPlayers() + 
+    "|" + s[6].getPlayers() + "|" + s[5].getPlayers() + "|" + s[4].getPlayers() + "|" + s[3].getPlayers() + 
+    "|" + s[2].getPlayers() + "|" + s[1].getPlayers() + "|" + s[0].getPlayers() + "|\n"
     "|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|";
 }
 
@@ -191,7 +204,7 @@ void auction(vector<Player> players) {
     bool isPurchased = false;
 
     while (!isPurchased) {
-        if (round == players.size()) {
+        if (round == (int) players.size()) {
             players[lastbid].paySchool(value);
         }
         cout << "Bid" + to_string(value + 10) + "? (Y/N)" << endl;

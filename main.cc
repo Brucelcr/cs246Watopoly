@@ -3,6 +3,7 @@
 using namespace std;
 
 int main() {
+    Board board;
     Game game;
     
     game.initGame();

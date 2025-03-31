@@ -192,3 +192,6 @@ void Player::sendToTims() {
 bool Player::hasMonopoly() const {
  // 
 }
+
+Player::Player(std::string name)
+    : Player(name, 1500, 'A', nullptr) { }

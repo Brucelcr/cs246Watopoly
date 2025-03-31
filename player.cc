@@ -1,10 +1,12 @@
 #include <iostream>
+#include <vector>
 
 #include "player.h"
 
 
-Player::Player(std::string name, int startBalance, Board* gameboard) :
-    name(name), balance(startBalance), position(0), inTimsLine(false), cups(0), gameboard(gameboard) {
+Player::Player(std::string name, int startBalance, char piece, Board* gameboard) :
+    name(name), piece(piece), balance(startBalance), position(0),
+    inTimsLine(false), cups(0), gameboard(gameboard) {
 }
 
 
@@ -53,13 +55,26 @@ void Player::rollDice() {
 
 }
 
-void Player::declareBankruptcy() {
-    std::cout << name << " has declared bankruptcy! All properties returned to the bank." << std::endl;
-    properties.clear();
-    balance = 0;
+void Player::addProperty(std::shared_ptr<Property> property) {
+    properties.push_back(property);
+    property->setOwner(name);
 }
 
-void Player::trade(Player& other, Property* give, Property* receive) {
+void Player::removeProperty(std::shared_ptr<Property> property) {
+    auto it = std::find(properties.begin(), properties.end(), property);
+    if (it != properties.end()) {
+        properties.erase(it);
+        property->setOwner("School"); // if we don't defaultly set property's owner to school, set it to nullptr
+    }
+}
+
+void Player::declareBankruptcy() {
+    properties.clear();
+    balance = 0;
+    std::cout << name << " has declared bankruptcy! All properties returned to the bank." << std::endl;
+}
+
+void Player::trade(Player& other, std::shared_ptr<Property> give, std::shared_ptr<Property> receive) {
     if (give) {
         give->setOwner(other.getName());
         properties.erase(std::remove(properties.begin(), properties.end(), give), properties.end());
@@ -73,15 +88,31 @@ void Player::trade(Player& other, Property* give, Property* receive) {
     std::cout << name << " traded with " << other.getName() << std::endl;
 }
 
-void Player::buyImprovement(Property* property) {
+void Player::buyImprovement(const std::shared_ptr<Property>& property) {
+    if (property->getOwner() != name) {
+        std::cout << "Buy Improment fail: You don't own this property" << std::endl;
+        return;
+    }
+
+    paySchool(property->getImprovementCost()); // change method name if needed
+    property->improvements++; // improve property
 
 }
 
-void Player::sellImprovement(Property* property){
+
+void Player::sellImprovement(const std::shared_ptr<Property>& property) {
+    if (property->getOwner() != name) {
+        std::cout << "Sell Improvement fail: You don't own this property" << std::endl;
+        return;
+    }
+
+    int refund = property->getImprovementCost() / 2; // 50% refund
+    property->improvements--;
+    receive(refund);
 
 }
 
-void Player::mortgage(Property* property) {
+void Player::mortgage(std::shared_ptr<Property> property) {
     if (property->getOwner() != name) {
         std::cout << "Cannot mortgage property that you don't own" << std::endl;
         return;
@@ -89,7 +120,7 @@ void Player::mortgage(Property* property) {
     property->mortgage();
 }
 
-void Player::unmortgage(Property* property) {
+void Player::unmortgage(std::shared_ptr<Property> property) {
     if (property->getOwner() != name) {
         std::cout << "Cannot unmortgage property that you don't own" << std::endl;
         return;
@@ -108,11 +139,12 @@ void Player::removeCup() {
     cups--;
 }
 
-void Player::setPosition(int newPos){
+void Player::setPosition(int newPos) {
     position = newPos;
+    gameboard->drawBoard();
 }
 
-void Player::resetTimsStatus(){
+void Player::resetTimsStatus() {
     inTimsLine = false;
 }
 

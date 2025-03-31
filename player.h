@@ -10,44 +10,48 @@
 class Player {
 private:
     std::string name;
+    char piece; // symbol representing player: G, B, D, P ...
     int balance;
     int position;
     bool inTimsLine;
     int cups;
-    std::vector<Property*> properties;
-    void removeProperty(Property* prop);
+    std::vector<std::shared_ptr<Property>> properties;
     Board* gameboard;
 
-public:
-    Player(std::string name, int startBalance, Board* gameboard);
+    void removeProperty(Property* prop);
 
+public:
+    Player(std::string name, int startBalance, char piece, Board* gameboard);
     int getPosition() const;
     std::string getName()const;
-    // void showAssets();
+    // void showAssets(); // do we really need this?
     bool isinTimsLine()const;
+    
 
-    void move(int steps);
+    void move(int steps); // update position and draw board
+    void setPosition(int newPos); // set to newPos and draw board
     void pay(Player* payee, int amount);
     void paySchool(int amount);
     void receive(int amount);
+    
+    void rollDice(); // roll a dice twice and move steps
 
-    // roll a dice twice and move steps
-    void rollDice();
-
+    void addProperty(std::shared_ptr<Property> property); // add to vector and update owner
+    void removeProperty(std::shared_ptr<Property> property); 
     void declareBankruptcy();
-    void trade(Player& other, Property* give, Property* receive);
-    void buyImprovement(Property* property);
-    void sellImprovement(Property* property);
-    void mortgage(Property* property);
-    void unmortgage(Property* property);
+    void trade(Player& other, std::shared_ptr<Property> give, std::shared_ptr<Property> receive);
+    
+    void buyImprovement(const std::shared_ptr<Property>& property);
+    void sellImprovement(const std::shared_ptr<Property>& property);
+    void mortgage(std::shared_ptr<Property> property);
+    void unmortgage(std::shared_ptr<Property> property);
 
     void addCup();
     void removeCup();
-
-    void setPosition(int newPos);
     void incrementTimsTurns();
     void resetTimsStatus();
 
+    
 
 
 

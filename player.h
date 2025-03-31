@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 #include "property.h"
 #include "dice.h"
 #include "board.h"

@@ -1,5 +1,6 @@
 #include "game.h"
 #include "player.h"
+#include "board.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -45,6 +46,11 @@ void Game::initGame() {
     currentPlayerIndex = 0;
     gameOver = false;
 }
+
+Game::Game(Board* board) : gameboard(board), currentPlayerIndex(0), gameOver(false) {
+    cout << "Game object created. Gameboard connected." << endl;
+}
+
 
 void Game::playTurn() {
     if (gameOver) {
@@ -133,7 +139,10 @@ void Game::playTurn() {
         else {
             cout << "Unknown command." << endl;
         }
+        gameboard->drawBoard();
+
     }
+
 
     nextPlayer();
 }

@@ -6,7 +6,7 @@
 
 Player::Player(std::string name, int startBalance, char piece, Board* gameboard) :
     name(name), piece(piece), balance(startBalance), position(0),
-    inTimsLine(false), cups(0), gameboard(gameboard) {
+    inTimsLine(false), turnsinLine(0), cups(0), gameboard(gameboard) {
 }
 
 
@@ -18,8 +18,38 @@ std::string Player::getName() const {
     return name;
 }
 
+int Player::getBalance() const {
+    return balance;
+}
+
 bool Player::isinTimsLine() const {
     return inTimsLine;
+}
+
+int Player::getTurnsInTims() const {
+    return turnsinLine;
+}
+
+int Player::getTotalWorth() const {
+    int total = balance;
+
+    // Add property values and improvements
+    for (const auto& property : properties) {
+        // Base property value
+        total += property->getCost();
+
+        // Add improvement values (50% of improvement cost)
+        if (!property->isMortgaged()) {
+            total += property->getImprovements() * (property->getImprovementCost() / 2);
+        }
+
+        // Subtract mortgage debt if applicable
+        if (property->isMortgaged()) {
+            total -= property->getCost() / 2;  // Mortgage value already received
+        }
+    }
+
+    return total;
 }
 
 void Player::move(int steps) {
@@ -35,14 +65,14 @@ void Player::pay(Player* payee, int amount) {
     }
 
     balance -= amount;
-    payee->receive(amount);
+    payee->receiveMoney(amount);
 }
 
 void Player::paySchool(int amount) {
     balance -= amount;
 }
 
-void Player::receive(int amount) {
+void Player::receiveMoney(int amount) {
     balance += amount;
 }
 
@@ -95,7 +125,7 @@ void Player::buyImprovement(const std::shared_ptr<Property>& property) {
     }
 
     paySchool(property->getImprovementCost()); // change method name if needed
-    property->improvements++; // improve property
+    property->getImprovements(); 
 
 }
 
@@ -107,8 +137,8 @@ void Player::sellImprovement(const std::shared_ptr<Property>& property) {
     }
 
     int refund = property->getImprovementCost() / 2; // 50% refund
-    property->improvements--;
-    receive(refund);
+    property->getImprovements();
+    receiveMoney(refund);
 
 }
 
@@ -144,7 +174,21 @@ void Player::setPosition(int newPos) {
     gameboard->drawBoard();
 }
 
+
 void Player::resetTimsStatus() {
     inTimsLine = false;
 }
 
+void Player::incrementTimsTurns(){
+    turnsinLine++;
+}
+
+void Player::sendToTims() {
+    setPosition(10);
+    inTimsLine = true;
+    turnsinLine = 0;
+}
+
+bool Player::hasMonopoly() const {
+ // 
+}

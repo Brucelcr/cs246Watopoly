@@ -35,7 +35,7 @@ public:
 
     void move(int steps); // update position and draw board
     void setPosition(int newPos); // set to newPos and draw board
-    void pay(Player* payee, int amount);
+    void pay(Player payee, int amount);
     void paySchool(int amount);
     void receiveMoney(int amount);
 
@@ -59,7 +59,7 @@ public:
     void sendToTims();
 
 
-    bool hasMonopoly() const; // check if player have all properties in a block
+    bool hasMonopoly(string code) const; // check if player have all properties in a block
 
 
 

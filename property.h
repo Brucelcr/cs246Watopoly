@@ -1,5 +1,6 @@
 #ifndef Property_H  
 #define Property_H
+#include <vector>
 #include <string>
 
 using namespace std;
@@ -14,18 +15,21 @@ class Property {
         int impCost; // improvement cost
         int *tuition; // how much money to take
         string block;
+        int numInSet;
     public:
-        Property(string, int, int, int[6], string);
-        string getName();
-        int calculateRent();
+        Property(string, int, int, int[6], string, int);
+        string getName() const;
         void setOwner(string newOwner);
-        string getOwner();
-        bool isMortgaged();
+        string getOwner() const;
+        bool isMortgaged() const;
         void mortgage();
         void unmortgage();
-        int getImprovements();
-        int getImprovementCost();
+        int getImprovements() const;
+        int getImprovementCost() const;
         int getCost() const;
+        int* getTuition() const;
+        string getBlock() const;
+        int getNumInSet() const;
         bool operator==(const Property& other) const;
 };
 

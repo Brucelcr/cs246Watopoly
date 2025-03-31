@@ -59,14 +59,14 @@ void Player::move(int steps) {
 
 }
 
-void Player::pay(Player* payee, int amount) {
+void Player::pay(Player payee, int amount) {
     if (balance < amount) {
         std::cout << "No enough money to pay" << std::endl;
         return;
     }
 
     balance -= amount;
-    payee->receiveMoney(amount);
+    payee.receiveMoney(amount);
 }
 
 void Player::paySchool(int amount) {
@@ -112,9 +112,16 @@ void Player::declareBankruptcy() {
 }
 
 void Player::trade(Player& other, std::shared_ptr<Property> give, std::shared_ptr<Property> receive, int giveMoney, int receiveMoney) {
-    if (give == nullptr || receive == nullptr) {
+    if (give == nullptr) {
         cout << "You don't own this building! Trade failed." << endl;
         return;
+    } else if (receive == nullptr) {
+        cout << "They don't own this building! Trade failed." << endl;
+        return;
+    } else if (giveMoney > balance) {
+        cout << "You don't have enough money! Trade failed." << endl; 
+    } else if (receiveMoney > other.balance) {
+        cout << "They don't have enough money! Trade failed." << endl; 
     }
 
     if (give) {
@@ -122,11 +129,23 @@ void Player::trade(Player& other, std::shared_ptr<Property> give, std::shared_pt
         properties.erase(std::remove(properties.begin(), properties.end(), give), properties.end());
         other.properties.push_back(give);
     }
+
     if (receive) {
         receive->setOwner(name);
         other.properties.erase(std::remove(other.properties.begin(), other.properties.end(), receive), other.properties.end());
         properties.push_back(receive);
     }
+
+    if (giveMoney) {
+        balance -= giveMoney;
+        pay(other, giveMoney);
+    }
+
+    if (receiveMoney) {
+        balance -= giveMoney;
+        pay(other, giveMoney);
+    }
+
     std::cout << name << " traded with " << other.getName() << std::endl;
 }
 
@@ -201,7 +220,16 @@ void Player::sendToTims() {
     turnsinLine = 0;
 }
 
-bool Player::hasMonopoly() const {
+bool Player::hasMonopoly(string code) const {
+    int count = 0;
+    for(const std::shared_ptr<Property>& p : properties) {
+        if (p->getBlock() == code) {
+            count++;
+        }
+        if (count == p->getNumInSet()) {
+            return true;
+        }
+    }
     return false;
 }
 

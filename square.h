@@ -1,5 +1,6 @@
 #ifndef Square_H  
 #define Square_H
+#include "player.h"
 #include "property.h"
 #include <string>
 
@@ -9,6 +10,7 @@ class Square {
     public: 
         Square(bool, Property);
         Square(string, bool);
+        int calculateRent(vector<Player> players);
         string getName();
         string getPlayers();
         Property getProperty();

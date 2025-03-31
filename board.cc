@@ -184,14 +184,14 @@ void Board::drawBoard() {
     cout << board << endl;
 }
 
-void auction() {
+void auction(vector<Player> players) {
     int value = 0;
     int round = 0;
     int lastbid = 0;
     bool isPurchased = false;
 
     while (!isPurchased) {
-        if (round == numPlayers) {
+        if (round == players.size()) {
             players[lastbid].paySchool(value);
         }
         cout << "Bid" + to_string(value + 10) + "? (Y/N)" << endl;

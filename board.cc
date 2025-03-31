@@ -222,7 +222,7 @@ string Board::viewImprovements(int index) {
 }
 
 // for testing
-int main() {
-    Board plank;
-    plank.drawBoard();
-}
+// int main() {
+//     Board plank;
+//     plank.drawBoard();
+// }

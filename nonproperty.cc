@@ -116,7 +116,7 @@ void SLC::landOn(Player& player) {
     });
 
     // 1% chance for Roll Up the Rim cup
-    if ((rand() % 100 && ... ) == 0) { // check active cup number here
+    if ((rand() % 100) == 0) { // check active cup number here
         player.addCup();
         std::cout << player.getName() << " got a Roll Up the Rim cup! \n";
     }
@@ -169,7 +169,7 @@ void NeedlesHall::landOn(Player& player) {
     }); 
 
     // 1% chance for Roll Up the Rim cup
-    if ((rand() % 100 && ...) == 0) { // check active cup number here
+    if ((rand() % 100) == 0) { // check active cup number here
         player.addCup();
         std::cout << player.getName() << " got a Roll Up the Rim cup! \n";
         return;

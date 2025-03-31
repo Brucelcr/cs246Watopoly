@@ -41,6 +41,8 @@ void Game::playTurn(){
     }
     cout << "It's " << players[currentPlayerIndex]->getName() << "'s turn." << endl;
 
+    // add input
+
     nextPlayer();
 
 }

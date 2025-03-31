@@ -23,6 +23,8 @@ private:
 
 public:
     Player(std::string name, int startBalance, char piece, Board* gameboard);
+    Player(std::string name); // to pass in into game.cc
+
     int getPosition() const;
     std::string getName()const;
     int getBalance() const;

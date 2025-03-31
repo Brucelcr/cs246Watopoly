@@ -7,14 +7,15 @@ using namespace std;
 
 class Square {
     public: 
-        Square(string name, bool isProperty);
+        Square(string, bool, Property);
         string getName();
         string getPlayers();
-        Property getProperty(); // I'm not sure how we want to do this actually, how do we want to link properties to their respective square?
+        Property getProperty();
         string landOn(); // Guys, what does this function do, I don't remember???
     private:
         string name;
         string players[6];
+        Property building;
         bool isProperty;
 };
 

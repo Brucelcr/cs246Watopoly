@@ -1,7 +1,8 @@
-#include "board.h";
-#include "square.h";
-#include <iostream>;
-#include <string>;
+#include "property.h"
+#include "board.h"
+#include "square.h"
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -50,57 +51,30 @@ Square s[40] = { // if you're checking for square name, note that the name is al
     Square("DC", true)    
 };
 
-
-// starting from go (collect OSAP), goes clockwise, ignoring non-property spaces
-// up to five I's in a row
-// 0: AL, 1: ML, 2: ECH, 3: PAS, 4: HH, 5: RCH, 6: DWE, 7: CPH, 8: LHI, 9: BMH, 10: OPT, 11: EV1, 
-// 12: EV2, 13: EV3, 14: PHYS, 15: B1, 16: B2, 17: EIT, 18: ESC, 19: C2, 20: MC, 21: DC
-string improvements[22] = {
-    "     ", "     ", "     ", "     ", "     ", "     ", "     ", "     ", 
-    "     ", "     ", "     ", "     ", "     ", "     ", "     ", 
-    "     ", "     ", "     ", "     ", "     ", "     ", "     "
-};
-
-// following the above formatting, indexes contain the string for the owner.
-string owner[22] = {
-    " ", " ", " ", " ", " ", " ", " ", " ", 
-    " ", " ", " ", " ", " ", " ", " ", 
-    " ", " ", " ", " ", " ", " ", " "
-};
-
-// player one takes index 0, player two takes index 1, etc, etc...
-// thus, the first index is only ever filled in once at a time.
-// current player cap is 6, we can increase to 7, and 8 if we change the board.
-// probably  would be easier to just list the players on square, but we'll see what happens.
-string players[40] = {
-    "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ",
-    "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ",
-    "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ",
-    "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      ", "      "
-};
-
 // improvements and owners array values will be replaced with corresponding square class values once implemented
 void Board::updateBoard() {
     board = "_________________________________________________________________________________________\n"
-    "|GOOSE  |" + owner[11] + " " + improvements[11] + 
-    "|NEEDLES|" + owner[12] + " " + improvements[12] + 
-    "|" + owner[13] + " " + improvements[13] + 
-    "|V1     |" + owner[14] + " " + improvements[14] + 
-    "|" + owner[15] + " " + improvements[15] + 
-    "|CIF    |" + owner[16] + " " + improvements[16] + 
+    "|GOOSE  |" + s[11].getProperty().getOwner() + " " + viewImprovements(11) + 
+    "|NEEDLES|" + s[12].getProperty().getOwner() + " " + viewImprovements(12) + 
+    "|" + s[13].getProperty().getOwner() + " " + viewImprovements(13) + 
+    "|V1     |" + s[14].getProperty().getOwner() + " " + viewImprovements(14) + 
+    "|" + s[15].getProperty().getOwner() + " " + viewImprovements(15) + 
+    "|CIF    |" + s[16].getProperty().getOwner() + " " + viewImprovements(16) + 
     "|GOTO   |\n"
     "|NESTING|-------|HALL   |-------|-------|       |-------|-------|       |-------|TIMS   |\n"
     "|       |EV1    |       |EV2    |EV3    |       |PHYS   |B1     |       |B2     |       |\n"
     "|       |       |       |       |       |       |       |       |       |       |       |\n"
     "|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|_______|\n"
-    "|" + owner[10] + " " + improvements[10] + 
-    "|                                                                       |" + owner[17] + " " + improvements[17] + "|\n"
+    "|" + s[10].getProperty().getOwner() + " " + viewImprovements(10) + 
+    "|                                                                       |" + 
+    s[17].getProperty().getOwner() + " " + viewImprovements(17) + "|\n"
     "|-------|                                                                       |-------|\n"
     "|OPT    |                                                                       |EIT    |\n"
     "|       |                                                                       |       |\n"
     "|_______|                                                                       |_______|\n"
-    "|" + owner[9] + " " + improvements[9] + 
-    "|                                                                       |"  + owner[18] + " "+ improvements[18] + "|\n"
+    "|" + s[9].getProperty().getOwner() + " " + viewImprovements(9) + 
+    "|                                                                       |"  + 
+    s[18].getProperty().getOwner() + " "+ viewImprovements(18) + "|\n"
     "|-------|                                                                       |-------|\n"
     "|BMH    |                                                                       |ESC    |\n"
     "|       |                                                                       |       |\n"
@@ -110,8 +84,9 @@ void Board::updateBoard() {
     "|       |                                                                       |       |\n"
     "|       |                                                                       |       |\n"
     "|_______|                                                                       |_______|\n"
-    "|" + owner[8] + " " + improvements[8] + 
-    "|                                                                       |" + owner[19] + " " + improvements[19] + "|\n"
+    "|" + s[8].getProperty().getOwner() + " " + viewImprovements(8) + 
+    "|                                                                       |" + 
+    s[19].getProperty().getOwner() + " " + viewImprovements(19) + "|\n"
     "|-------|                                                                       |-------|\n"
     "|LHI    |                                                                       |C2     |\n"
     "|       |           _________________________________________________           |       |\n"
@@ -121,14 +96,15 @@ void Board::updateBoard() {
     "|       |          | # # # #####   #   #   # ####  #   # #      # #  |          |       |\n"
     "|       |          | # # # #   #   #   #   # #     #   # #       #   |          |       |\n"
     "|_______|          | ##### #   #   #    ###  #      ###  #####   #   |          |_______|\n"
-    "|" + owner[7] + " " + improvements[7] + 
+    "|" + s[7].getProperty().getOwner() + " " + viewImprovements(7) + 
     "|          |_________________________________________________|          |NEEDLES|\n"
     "|-------|                                                                       |HALL   |\n"
     "|CPH    |                                                                       |       |\n"
     "|       |                                                                       |       |\n"
     "|_______|                                                                       |_______|\n"
-    "|" + owner[6] + " " + improvements[6] + 
-    "|                                                                       |" + owner[20] + " " + improvements[20] + "|\n"
+    "|" + s[6].getProperty().getOwner() + " " + viewImprovements(6) + 
+    "|                                                                       |" + 
+    s[20].getProperty().getOwner() + " " + viewImprovements(20) + "|\n"
     "|-------|                                                                       |-------|\n"
     "|DWE    |                                                                       |MC     |\n"
     "|       |                                                                       |       |\n"
@@ -138,17 +114,18 @@ void Board::updateBoard() {
     "|       |                                                                       |       |\n"
     "|       |                                                                       |       |\n"
     "|_______|                                                                       |_______|\n"
-    "|" + owner[5] + " " + improvements[5] + 
-    "|                                                                       |" + owner[21] + " " + improvements[21] + "|\n"
+    "|" + s[5].getProperty().getOwner() + " " + viewImprovements(5) + 
+    "|                                                                       |" + 
+    s[21].getProperty().getOwner() + " " + viewImprovements(21) + "|\n"
     "|-------|                                                                       |-------|\n"
     "|RCH    |                                                                       |DC     |\n"
     "|       |                                                                       |       |\n"
     "|_______|_______________________________________________________________________|_______|\n"
-    "|DCTIMS |" + owner[4] + " " + improvements[4] + 
-    "|" + owner[3] + " " + improvements[3] + 
-    "|NEEDLES|" + owner[2] + " " + improvements[2] + 
-    "|MKV    |TUITION|" + owner[1] + " " + improvements[1] + 
-    "|SLC    |" + owner[0] + " " + improvements[0] + "|COLLECT|\n"
+    "|DCTIMS |" + s[4].getProperty().getOwner() + " " + viewImprovements(4) + 
+    "|" + s[3].getProperty().getOwner() + " " + viewImprovements(3) + 
+    "|NEEDLES|" + s[2].getProperty().getOwner() + " " + viewImprovements(2) + 
+    "|MKV    |TUITION|" + s[1].getProperty().getOwner() + " " + viewImprovements(1) + 
+    "|SLC    |" + s[0].getProperty().getOwner() + " " + viewImprovements(0) + "|COLLECT|\n"
     "|LINE   |-------|-------|HALL   |-------|       |       |-------|       |-------|OSAP   |\n"
     "|       |HH     |PAS    |       |ECH    |       |       |ML     |       |AL     |       |\n"
     "|       |       |       |       |       |       |       |       |       |       |       |\n"
@@ -158,6 +135,14 @@ void Board::updateBoard() {
 void Board::drawBoard() {
     updateBoard();   
     cout << board << endl;
+}
+
+string viewImprovements(int index) {
+    int level = s[index].getProperty().improvements;
+    string out(level, 'X');
+    string outToo(5-level, ' ');
+    
+    return out + outToo;
 }
 
 // for testing

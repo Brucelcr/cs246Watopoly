@@ -1,12 +1,12 @@
-#include "property.h";
-#include "square.h";
-#include <iostream>;
-#include <string>;
+#include "property.h"
+#include "square.h"
+#include <iostream>
+#include <string>
 
 Square::Square(string name, bool isProperty) {};
 
-string Square::getName(int index) {
-    return name[index];
+string Square::getName() {
+    return name;
 }
 
 string Square::getPlayers() {
@@ -17,10 +17,10 @@ string Square::getPlayers() {
     return out;
 }
 
-property Square::getProperty() {
-    property building;
+Property Square::getProperty() {
+    Property building;
     // I dunno
-    return building
+    return building;
 }
 
 string Square::landOn() {

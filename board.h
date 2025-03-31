@@ -1,6 +1,7 @@
-#define Board_H;
-#include property.h;
-#include <string>;
+#ifndef Board_H  
+#define Board_H
+#include "property.h"
+#include <string>
 
 using namespace std;
 
@@ -8,11 +9,12 @@ class Board {
     public:
         Board();
         void drawBoard();
-        property p(); 
+        Property getProperty(); 
+        void auction();
     private: 
         string board;
-        string improvements[22]; // will move into properties as well(?)
-        string owner[22]; // will retrieve from properties
-        string players; // will move into square
         void updateBoard();
+        string viewImprovements(int index);
 };
+
+#endif

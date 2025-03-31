@@ -8,15 +8,15 @@ Player::Player(std::string name, int startBalance, Board* gameboard) :
 }
 
 
-int Player::getPosition() {
+int Player::getPosition() const {
     return position;
 }
 
-std::string Player::getName() {
+std::string Player::getName() const {
     return name;
 }
 
-bool Player::isinTimsLine() {
+bool Player::isinTimsLine() const {
     return inTimsLine;
 }
 

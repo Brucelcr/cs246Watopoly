@@ -8,45 +8,45 @@
 #include "board.h"
 
 class Player {
-    private:
-        std::string name;
-        int balance;
-        int position;
-        bool inTimsLine;
-        int cups;
-        std::vector<Property*> properties;
-        void removeProperty(Property* prop);
-        Board* gameboard;
+private:
+    std::string name;
+    int balance;
+    int position;
+    bool inTimsLine;
+    int cups;
+    std::vector<Property*> properties;
+    void removeProperty(Property* prop);
+    Board* gameboard;
 
-    public:
-        Player(std::string name, int startBalance, Board* gameboard);
+public:
+    Player(std::string name, int startBalance, Board* gameboard);
 
-        int getPosition();
-        std::string getName();
-        // void showAssets();
-        bool isinTimsLine();
+    int getPosition() const;
+    std::string getName()const;
+    // void showAssets();
+    bool isinTimsLine()const;
 
-        void move(int steps);
-        void pay(Player* payee, int amount);
-        void paySchool(int amount);
-        void receive(int amount);
-        
-        // roll a dice twice and move steps
-        void rollDice();
+    void move(int steps);
+    void pay(Player* payee, int amount);
+    void paySchool(int amount);
+    void receive(int amount);
 
-        void declareBankruptcy();
-        void trade(Player& other, Property* give, Property* receive);
-        void buyImprovement(Property* property);
-        void sellImprovement(Property* property);
-        void mortgage(Property* property);
-        void unmortgage(Property* property);
+    // roll a dice twice and move steps
+    void rollDice();
 
-        void addCup();
-        void removeCup();
+    void declareBankruptcy();
+    void trade(Player& other, Property* give, Property* receive);
+    void buyImprovement(Property* property);
+    void sellImprovement(Property* property);
+    void mortgage(Property* property);
+    void unmortgage(Property* property);
 
-        void setPosition(int newPos);
-        void incrementTimsTurns();
-        void resetTimsStatus();
+    void addCup();
+    void removeCup();
+
+    void setPosition(int newPos);
+    void incrementTimsTurns();
+    void resetTimsStatus();
 
 
 

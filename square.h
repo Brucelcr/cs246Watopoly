@@ -8,6 +8,7 @@ using namespace std;
 class Square {
     public: 
         Square(string, bool, Property);
+        Square(string, bool);
         string getName();
         string getPlayers();
         Property getProperty();

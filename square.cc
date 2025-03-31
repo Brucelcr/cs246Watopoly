@@ -5,6 +5,8 @@
 
 Square::Square(string name, bool isProperty, Property building) : name(name), isProperty(isProperty), building(building) {};
 
+Square::Square(string name, bool isProperty) : name(name), isProperty(isProperty), building(Property(0, 0, 0, "None")) {};
+
 string Square::getName() {
     return name;
 }

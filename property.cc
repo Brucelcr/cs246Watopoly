@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Property::Property(int cost, int tuition[6], string block) : cost(cost), tuition(tuition), 
+Property::Property(int cost, int impCost, int tuition[6], string block) : cost(cost), impCost(impCost), tuition(tuition), 
 block(block), mortgaged(false), owner(" "), improvements(0) {};
 
 int Property::calculateRent() {

@@ -64,7 +64,8 @@ void Game::playTurn(){
             players[currentPlayerIndex]->trade(
                 *target, 
                 players[currentPlayerIndex]->stringToProperty(give), 
-                players[currentPlayerIndex]->stringToProperty(recieve)
+                players[currentPlayerIndex]->stringToProperty(recieve), 
+                0, 0
             );
         }
 

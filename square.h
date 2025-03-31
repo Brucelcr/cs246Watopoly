@@ -15,8 +15,8 @@ class Square {
         string landOn(); // Guys, what does this function do, I don't remember???
     private:
         string players[6];
-        Property building;
         bool isProperty;
+        Property building;
 };
 
 #endif

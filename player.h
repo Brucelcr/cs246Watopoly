@@ -45,7 +45,7 @@ public:
     void removeProperty(std::shared_ptr<Property> property);
     std::shared_ptr<Property> stringToProperty(std::string property);
     void declareBankruptcy();
-    void trade(Player& other, std::shared_ptr<Property> give, std::shared_ptr<Property> receive);
+    void trade(Player& other, std::shared_ptr<Property> give, std::shared_ptr<Property> receive, int giveMoney, int receiveMoney);
 
     void buyImprovement(const std::shared_ptr<Property>& property);
     void sellImprovement(const std::shared_ptr<Property>& property);

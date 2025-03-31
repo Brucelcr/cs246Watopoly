@@ -4,15 +4,15 @@
 
 using namespace std;
 
-Property::Property(string name, int cost, int impCost, int tuition[6], string block) : name(name), cost(cost), 
-impCost(impCost), tuition(tuition), block(block), mortgaged(false), owner(" "), improvements(0) {};
+Property::Property(string name, int cost, int impCost, int tuition[6], string block) : name(name), mortgaged(false), owner(" "), 
+improvements(0), cost(cost), impCost(impCost), tuition(tuition), block(block) {};
 
 string Property::getName() {
     return name;
 }
 
 int Property::calculateRent() {
-    if (block != "None", "Residences", "Gym") {
+    if (block != "None" && block != "Residences" &&  block !="Gym") {
         return tuition[improvements];
     }
     return 0;

@@ -102,7 +102,6 @@ std::shared_ptr<Property> Player::stringToProperty(std::string property) {
             return p;
         }
     }
-    cout << "You don't own this building!" << endl;
     return nullptr;
 }
 
@@ -112,7 +111,12 @@ void Player::declareBankruptcy() {
     std::cout << name << " has declared bankruptcy! All properties returned to the bank." << std::endl;
 }
 
-void Player::trade(Player& other, std::shared_ptr<Property> give, std::shared_ptr<Property> receive) {
+void Player::trade(Player& other, std::shared_ptr<Property> give, std::shared_ptr<Property> receive, int giveMoney, int receiveMoney) {
+    if (give == nullptr || receive == nullptr) {
+        cout << "You don't own this building! Trade failed." << endl;
+        return;
+    }
+
     if (give) {
         give->setOwner(other.getName());
         properties.erase(std::remove(properties.begin(), properties.end(), give), properties.end());

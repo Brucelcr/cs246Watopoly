@@ -36,7 +36,7 @@ void Game::initGame() {
 
 void Game::playTurn(){
     if(gameOver){
-        cout << "The game is over." << cout;
+        cout << "The game is over." << endl;
         return;
     }
     cout << "It's " << players[currentPlayerIndex]->getName() << "'s turn." << endl;

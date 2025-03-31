@@ -5,6 +5,9 @@
 using namespace std;
 
 class Property {
+    private: 
+        bool mortgaged;
+        string owner;
     public:
         Property();
         int calculateRent();
@@ -14,9 +17,7 @@ class Property {
         void mortgage();
         void unmortgage();
         int improvements;
-    private: 
-        bool mortgaged;
-        string owner;
+        int value();
 };
 
 #endif

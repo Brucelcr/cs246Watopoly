@@ -8,6 +8,7 @@ Property::Property() : mortgaged(false), owner(" "), improvements(0) {};
 
 int Property::calculateRent() {
     // uhh do value calcs, I'll set up values in a sec.
+    return 0;
 }
 
 void Property::setOwner(string newOwner) {

@@ -6,6 +6,7 @@ using namespace std;
 
 class Property {
     private: 
+        string name;
         bool mortgaged;
         string owner;
         int improvements;
@@ -14,7 +15,8 @@ class Property {
         int *tuition; // how much money to take
         string block;
     public:
-        Property(int, int, int[6], string);
+        Property(string, int, int, int[6], string);
+        string getName();
         int calculateRent();
         void setOwner(string newOwner);
         string getOwner();
@@ -24,6 +26,7 @@ class Property {
         int getImprovements();
         int getImprovementCost();
         int getCost() const;
+        bool operator==(const Property& other) const;
 };
 
 #endif

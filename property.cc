@@ -4,8 +4,12 @@
 
 using namespace std;
 
-Property::Property(int cost, int impCost, int tuition[6], string block) : cost(cost), impCost(impCost), tuition(tuition), 
-block(block), mortgaged(false), owner(" "), improvements(0) {};
+Property::Property(string name, int cost, int impCost, int tuition[6], string block) : name(name), cost(cost), 
+impCost(impCost), tuition(tuition), block(block), mortgaged(false), owner(" "), improvements(0) {};
+
+string Property::getName() {
+    return name;
+}
 
 int Property::calculateRent() {
     if (block != "None", "Residences", "Gym") {
@@ -52,4 +56,8 @@ int Property::getImprovementCost() {
 
 int Property::getCost() const {
     return cost;
+}
+
+bool Property::operator==(const Property& other) const {
+    return (name == other.name);
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "player.h"
 
@@ -90,13 +91,10 @@ void Player::addProperty(std::shared_ptr<Property> property) {
     property->setOwner(name);
 }
 
-// void Player::removeProperty(std::shared_ptr<Property> property) {
-//     auto it = std::find(properties.begin(), properties.end(), property);
-//     if (it != properties.end()) {
-//         properties.erase(it);
-//         property->setOwner(" ");
-//     }
-// }
+void Player::removeProperty(std::shared_ptr<Property> property) {
+    properties.erase(std::remove(properties.begin(), properties.end(), property), properties.end());
+    property->setOwner(" ");
+}
 
 void Player::declareBankruptcy() {
     properties.clear();
@@ -104,19 +102,19 @@ void Player::declareBankruptcy() {
     std::cout << name << " has declared bankruptcy! All properties returned to the bank." << std::endl;
 }
 
-// void Player::trade(Player& other, std::shared_ptr<Property> give, std::shared_ptr<Property> receive) {
-//     if (give) {
-//         give->setOwner(other.getName());
-//         properties.erase(std::remove(properties.begin(), properties.end(), give), properties.end());
-//         other.properties.push_back(give);
-//     }
-//     if (receive) {
-//         receive->setOwner(name);
-//         other.properties.erase(std::remove(other.properties.begin(), other.properties.end(), receive), other.properties.end());
-//         properties.push_back(receive);
-//     }
-//     std::cout << name << " traded with " << other.getName() << std::endl;
-// }
+void Player::trade(Player& other, std::shared_ptr<Property> give, std::shared_ptr<Property> receive) {
+    if (give) {
+        give->setOwner(other.getName());
+        properties.erase(std::remove(properties.begin(), properties.end(), give), properties.end());
+        other.properties.push_back(give);
+    }
+    if (receive) {
+        receive->setOwner(name);
+        other.properties.erase(std::remove(other.properties.begin(), other.properties.end(), receive), other.properties.end());
+        properties.push_back(receive);
+    }
+    std::cout << name << " traded with " << other.getName() << std::endl;
+}
 
 void Player::buyImprovement(const std::shared_ptr<Property>& property) {
     if (property->getOwner() != name) {

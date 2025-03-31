@@ -7,14 +7,13 @@ using namespace std;
 
 class Square {
     public: 
-        Square(string, bool, Property);
+        Square(bool, Property);
         Square(string, bool);
         string getName();
         string getPlayers();
         Property getProperty();
         string landOn(); // Guys, what does this function do, I don't remember???
     private:
-        string name;
         string players[6];
         Property building;
         bool isProperty;

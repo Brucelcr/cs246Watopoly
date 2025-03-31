@@ -21,6 +21,7 @@ private:
     Board* gameboard;
 
     void removeProperty(Property* prop);
+    void clearProperty(Property* prop);
 
 public:
     Player(std::string name, int startBalance, char piece, Board* gameboard);

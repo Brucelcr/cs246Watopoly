@@ -1,7 +1,11 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <string>
 #include <vector>
 #include "property.h"
 #include "dice.h"
+#include "board.h"
 
 class Player {
     private:
@@ -12,13 +16,14 @@ class Player {
         int cups;
         std::vector<Property*> properties;
         void removeProperty(Property* prop);
+        Board* gameboard;
 
     public:
-        Player(std::string name, int startBalance);
+        Player(std::string name, int startBalance, Board* gameboard);
 
         int getPosition();
         std::string getName();
-        void showAssets();
+        // void showAssets();
         bool isinTimsLine();
 
         void move(int steps);
@@ -27,7 +32,26 @@ class Player {
         void receive(int amount);
         
         // roll a dice twice and move steps
-        void rollDice(); 
+        void rollDice();
+
+        void declareBankruptcy();
+        void trade(Player& other, Property* give, Property* receive);
+        void buyImprovement(Property* property);
+        void sellImprovement(Property* property);
+        void mortgage(Property* property);
+        void unmortgage(Property* property);
+
+        void addCup();
+        void removeCup();
+
+        void setPosition(int newPos);
+        void incrementTimsTurns();
+        void resetTimsStatus();
 
 
-}
+
+
+
+};
+
+#endif

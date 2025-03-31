@@ -137,7 +137,7 @@ void Board::drawBoard() {
     cout << board << endl;
 }
 
-string viewImprovements(int index) {
+string Board::viewImprovements(int index) {
     int level = s[index].getProperty().improvements;
     string out(level, 'X');
     string outToo(5-level, ' ');

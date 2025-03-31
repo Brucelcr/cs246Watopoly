@@ -21,6 +21,7 @@ class Property {
         void mortgage();
         void unmortgage();
         int getImprovements();
+        int getCost() const;
 };
 
 #endif

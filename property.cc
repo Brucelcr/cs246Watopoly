@@ -46,3 +46,6 @@ int Property::getImprovements() {
     return improvements;
 }
 
+int Property::getCost() const {
+    return cost;
+}

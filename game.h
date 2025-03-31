@@ -26,9 +26,9 @@ public:
 private:
     void nextPlayer();
     std::vector<std::unique_ptr<Player>> players;
-    bool gameOver;
-    int currentPlayerIndex;
 
+    int currentPlayerIndex;
+    bool gameOver;
 
     
 };
